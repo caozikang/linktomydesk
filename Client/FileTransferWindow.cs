@@ -16,7 +16,7 @@ namespace RemoteControl.Client
     /// 文件传输窗口：左边本机、右边远程，双击进入目录，选中后点中间的箭头上传 / 下载，底部显示进度。
     /// 也支持从资源管理器把文件拖到右边直接上传。
     /// </summary>
-    public sealed class FileTransferWindow : LinkDeskWindow
+    public sealed class FileTransferWindow : LinkToMyDeskWindow
     {
         /// <summary>远程路径里的占位符：被控端换成当前登录用户的桌面</summary>
         public const string RemoteDesktopToken = "~desktop";

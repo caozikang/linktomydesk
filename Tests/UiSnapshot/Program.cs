@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using RemoteControl.Common;
 
-// 界面截图：在屏幕外打开被控端 / 控制端窗口，渲染成 PNG，用来和 linkdesk.html 原型对比。
+// 界面截图：在屏幕外打开被控端 / 控制端窗口，渲染成 PNG，用来和界面原型对比。
 // 不连接网络、不启动服务、不注入输入。
 static class Program
 {

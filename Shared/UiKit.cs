@@ -13,7 +13,7 @@ using System.Windows.Shell;
 namespace RemoteControl.Ui
 {
     /// <summary>
-    /// 简连 LinkDesk 风格的界面积木（配色和样式在 Theme.xaml），被控端和控制端共用
+    /// 简连 LinkToMyDesk 风格的界面积木（配色和样式在 Theme.xaml），被控端和控制端共用
     /// </summary>
     internal static class UiKit
     {
@@ -280,7 +280,7 @@ namespace RemoteControl.Ui
     /// <summary>
     /// 无系统边框的深色窗口：自绘标题栏（Logo + 标题 + 右上角圆点按钮），支持最大化和全屏
     /// </summary>
-    public class LinkDeskWindow : Window
+    public class LinkToMyDeskWindow : Window
     {
         private const double TitleBarHeight = 44;
 
@@ -296,7 +296,7 @@ namespace RemoteControl.Ui
 
         public bool IsFullScreen { get; private set; }
 
-        protected LinkDeskWindow()
+        protected LinkToMyDeskWindow()
         {
             Background = UiKit.Br("Panel");
             Foreground = UiKit.Br("Txt");

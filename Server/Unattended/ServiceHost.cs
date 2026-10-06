@@ -11,7 +11,10 @@ namespace RemoteControl.Server.Unattended
     /// </summary>
     internal static class ServiceHost
     {
-        public const string ServiceName = "LinkDeskService";
+        public const string ServiceName = "LinkToMyDeskService";
+
+        /// <summary>改名前的服务名：安装 / 卸载时顺带清理，避免留下两个服务</summary>
+        public const string LegacyServiceName = "LinkDeskService";
 
         #region P/Invoke
 
@@ -93,8 +96,8 @@ namespace RemoteControl.Server.Unattended
                         "1. 以管理员身份直接运行本程序（不带参数）\n" +
                         "2. 连接方式选「中继」，填好中继服务器地址\n" +
                         "3. 勾选「无人值守模式」，设置固定密码\n\n" +
-                        "程序会自动安装并启动服务（服务名 LinkDeskService）。",
-                        "简连 LinkDesk", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                        $"程序会自动安装并启动服务（服务名 {ServiceName}）。",
+                        "简连 LinkToMyDesk", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
                 }
                 return err;
             }

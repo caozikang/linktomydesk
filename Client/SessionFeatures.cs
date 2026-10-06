@@ -330,7 +330,7 @@ namespace RemoteControl.Client
             {
                 try
                 {
-                    string dir = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), "LinkDesk");
+                    string dir = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos), "LinkToMyDesk");
                     Directory.CreateDirectory(dir);
                     string safeTarget = string.Concat(_target.Where(c => !System.IO.Path.GetInvalidFileNameChars().Contains(c))).Replace(" ", "");
                     string path = System.IO.Path.Combine(dir, $"{DateTime.Now:yyyyMMdd_HHmmss}_{safeTarget}.mp4");

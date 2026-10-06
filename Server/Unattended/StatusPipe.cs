@@ -28,7 +28,7 @@ namespace RemoteControl.Server.Unattended
     /// </summary>
     internal sealed class StatusPipeServer : IDisposable
     {
-        public const string PipeName = "LinkDeskAgent";
+        public const string PipeName = "LinkToMyDeskAgent";
 
         private readonly object _gate = new();
         private readonly CancellationTokenSource _cts = new();

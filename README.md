@@ -1,4 +1,6 @@
-# 简连 LinkDesk
+# 简连 LinkToMyDesk
+
+官网：[www.linktomydesk.com](https://www.linktomydesk.com)
 
 开源的 Windows 远程控制软件，类似 ToDesk / AnyDesk。双方都在内网也能连：被控端和控制端都主动连接一台自建的中继服务器，用 9 位识别码加密码接入。
 

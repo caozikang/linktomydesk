@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>简连 LinkDesk 使用说明</title>
+<title>简连 LinkToMyDesk 使用说明</title>
 <style>
   :root{
     --bg:#0e1116; --panel:#171c24; --panel2:#1e2530; --line:#2a3240;
@@ -70,7 +70,7 @@
 <div class="wrap">
 
 <nav aria-label="目录">
-  <div class="brand"><span class="logo" aria-hidden="true">L</span>简连 LinkDesk</div>
+  <div class="brand"><span class="logo" aria-hidden="true">L</span>简连 LinkToMyDesk</div>
   <ol>
     <li><a href="#overview">工作原理</a></li>
     <li><a href="#relay">1. 部署中继服务器</a></li>
@@ -87,7 +87,7 @@
 </nav>
 
 <main id="main">
-<h1>简连 LinkDesk 使用说明</h1>
+<h1>简连 LinkToMyDesk 使用说明</h1>
 <p class="lead">开源的 Windows 远程控制软件。两台电脑都在内网也能连，用 9 位识别码加密码接入。</p>
 
 <h2 id="overview">工作原理</h2>
@@ -148,7 +148,7 @@ dotnet RemoteControl.RelayServer.dll 16888</code></pre>
   <tr><td>⇄ 传输文件</td><td>打开文件传输窗口，见 <a href="#files">第 5 节</a>。</td></tr>
   <tr><td>⌨ Ctrl+Alt+Del</td><td>给对方发送 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>。<strong>需要对方开启无人值守模式</strong>，否则会提示无法发送。</td></tr>
   <tr><td>✎ 白板标注</td><td>开启后，在画面上按住拖动就能画线，所有在线的人和被控端屏幕上都看得到。<strong>右键</strong>清空全部标注。标注时不会操作对方电脑，再点一次退出标注模式。</td></tr>
-  <tr><td>● 录制</td><td>开始或停止录制，保存为 MP4，放在「视频\LinkDesk」文件夹。录制时底部会显示「录制中」。</td></tr>
+  <tr><td>● 录制</td><td>开始或停止录制，保存为 MP4，放在「视频\LinkToMyDesk」文件夹。录制时底部会显示「录制中」。</td></tr>
   <tr><td>屏幕1 ▾</td><td>对方有多个显示器时才会出现，用来切换要看的屏幕。一个人切换后，所有人看到的画面都会跟着切换。</td></tr>
   <tr><td>画质 / 帧率</td><td>流畅、标准、高清、超清；15、30、60 帧。见 <a href="#tips">画质与网络</a>。</td></tr>
   <tr><td>延迟 · 速率</td><td>往返延迟和当前接收速率。圆点颜色：绿色低于 80ms，黄色低于 200ms，红色更高。</td></tr>
@@ -181,7 +181,7 @@ dotnet RemoteControl.RelayServer.dll 16888</code></pre>
   <li>以管理员身份运行被控端，<strong>不要加任何参数</strong>。</li>
   <li>连接方式选「中继」，填好中继服务器地址和端口。无人值守只支持中继方式。</li>
   <li>勾选「无人值守模式」，在弹窗里设置固定密码：8–32 位，同时有字母和数字，不能有空格。</li>
-  <li>程序会自动安装并启动服务。在服务列表（<code>services.msc</code>）里能看到「简连 LinkDesk 无人值守」，服务名是 <code>LinkDeskService</code>。</li>
+  <li>程序会自动安装并启动服务。在服务列表（<code>services.msc</code>）里能看到「简连 LinkToMyDesk 无人值守」，服务名是 <code>LinkToMyDeskService</code>。从旧版（LinkDesk）升级时，旧服务会被自动清理。</li>
   <li>被控端界面会变成只显示状态，底部显示「已连接中继节点 …（无人值守）」。之后关掉这个窗口也不影响远程连接。</li>
 </ol>
 <div class="warn"><strong>注意：</strong>不要手动运行 <code>RemoteControl.Server.exe --service</code>。这个参数是给 Windows 服务管理器用的，手动运行只会弹一个提示，然后退出，不会安装服务，也不会接受连接。</div>
@@ -228,7 +228,7 @@ dotnet RemoteControl.RelayServer.dll 16888</code></pre>
   <li>请只在你拥有或已获得授权的电脑上使用本软件。</li>
 </ul>
 
-<footer>简连 LinkDesk · MIT 许可证开源</footer>
+<footer>简连 LinkToMyDesk · <a href="https://www.linktomydesk.com">www.linktomydesk.com</a> · <a href="https://github.com/caozikang/linkdesk">GitHub</a> · MIT 许可证开源</footer>
 </main>
 </div>
 </body>

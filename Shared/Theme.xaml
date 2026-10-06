@@ -1,7 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- 简连 LinkDesk 深色主题（配色取自 linkdesk.html 原型） -->
+    <!-- 简连 LinkToMyDesk 深色主题（配色取自最初的界面原型） -->
     <Color x:Key="BgColor">#0E1116</Color>
     <Color x:Key="PanelColor">#171C24</Color>
     <Color x:Key="Panel2Color">#1E2530</Color>

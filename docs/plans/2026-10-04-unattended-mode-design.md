@@ -15,7 +15,7 @@
 | 启动方式 | 身份 | 作用 |
 |---|---|---|
 | 无参数 | 当前用户 | 普通被控端界面。检测到服务已安装时只显示状态 |
-| `--service` | LocalSystem，session 0 | Windows 服务 `LinkDeskService`，保证控制台会话里始终有一个 agent 在运行 |
+| `--service` | LocalSystem，session 0 | Windows 服务 `LinkToMyDeskService`（改名前为 `LinkDeskService`，安装时自动清理），保证控制台会话里始终有一个 agent 在运行 |
 | `--agent` | SYSTEM，控制台会话 | 无界面，运行 `RemoteServer`（中继注册、推流、输入）。可以发送 SendSAS |
 
 ### 服务（ServiceHost）
@@ -35,13 +35,13 @@
 
 ### 状态通道（桌面界面 ↔ agent）
 
-- 命名管道 `\\.\pipe\LinkDeskAgent`，一行一个 JSON
+- 命名管道 `\\.\pipe\LinkToMyDeskAgent`，一行一个 JSON
 - agent 每秒推送一次状态：是否已注册中继、在线访问者列表、最近的日志
 - 管道 ACL 只允许 SYSTEM 和 Administrators 连接
 
 ### 安装和卸载
 
-- 被控端界面勾选"无人值守模式"后，先要求设置固定密码，再执行 `sc create LinkDeskService binPath= "<exe> --service" start= auto obj= LocalSystem` 和 `sc start`
+- 被控端界面勾选"无人值守模式"后，先要求设置固定密码，再执行 `sc create LinkToMyDeskService binPath= "<exe> --service" start= auto obj= LocalSystem` 和 `sc start`
 - 取消勾选时执行 `sc stop` 和 `sc delete`
 - 界面进程本身已经是管理员（manifest 是 requireAdministrator），不需要再提权
 

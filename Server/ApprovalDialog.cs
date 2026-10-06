@@ -9,7 +9,7 @@ namespace RemoteControl.Server
     /// <summary>
     /// "对方请求控制本机"确认窗口：允许 / 拒绝，倒计时结束自动拒绝
     /// </summary>
-    public sealed class ApprovalDialog : LinkDeskWindow
+    public sealed class ApprovalDialog : LinkToMyDeskWindow
     {
         private const int TimeoutSeconds = 30;
 

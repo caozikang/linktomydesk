@@ -7,7 +7,7 @@ using RemoteControl.Ui;
 namespace RemoteControl.Server
 {
     /// <summary>开启无人值守前设置固定密码：输入两次，至少 8 位，字母加数字</summary>
-    public sealed class FixedPasswordDialog : LinkDeskWindow
+    public sealed class FixedPasswordDialog : LinkToMyDeskWindow
     {
         private readonly PasswordBox _first = new() { MaxLength = 32 };
         private readonly PasswordBox _second = new() { MaxLength = 32 };

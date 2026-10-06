@@ -13,9 +13,9 @@ using RemoteControl.Ui;
 namespace RemoteControl.Server
 {
     /// <summary>
-    /// 被控端主窗口（简连 LinkDesk 风格）：本机识别码卡片 + 连接方式 + 访问者 / 日志
+    /// 被控端主窗口（简连 LinkToMyDesk 风格）：本机识别码卡片 + 连接方式 + 访问者 / 日志
     /// </summary>
-    public partial class MainWindow : LinkDeskWindow
+    public partial class MainWindow : LinkToMyDeskWindow
     {
         private const string SettingsName = "server";
         private const int MaxLogLines = 500;
@@ -67,7 +67,7 @@ namespace RemoteControl.Server
                 _settings.Save(SettingsName);
             }
 
-            ChromeTitle = "简连 LinkDesk · 被控端";
+            ChromeTitle = "简连 LinkToMyDesk · 被控端";
             Width = 420;
             Height = 700;
             MinHeight = 600;
@@ -514,7 +514,7 @@ namespace RemoteControl.Server
             SetSettingsEnabled(true);
             _startButton.Visibility = Visibility.Visible;
             _stopButton.Visibility = Visibility.Collapsed;
-            ChromeTitle = "简连 LinkDesk · 被控端";
+            ChromeTitle = "简连 LinkToMyDesk · 被控端";
             SetChip("服务未开启", false);
             SetStatus("未开启 · 开启后对方可用识别码连接本机", "Line", glow: false);
             _subtitle.Text = $"本机设备「{Environment.MachineName}」";
@@ -587,7 +587,7 @@ namespace RemoteControl.Server
         /// <summary>刷新访问者列表（界面线程）。无人值守时数据来自 agent</summary>
         private void ShowViewers(IReadOnlyList<ViewerInfo> viewers, int controllerId)
         {
-            ChromeTitle = viewers.Count > 0 ? $"简连 LinkDesk · {viewers.Count} 人访问中" : "简连 LinkDesk · 被控端";
+            ChromeTitle = viewers.Count > 0 ? $"简连 LinkToMyDesk · {viewers.Count} 人访问中" : "简连 LinkToMyDesk · 被控端";
             UpdateViewerTab(viewers.Count);
 
             _viewerList.Items.Clear();

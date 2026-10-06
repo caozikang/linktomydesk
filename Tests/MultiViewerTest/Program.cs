@@ -122,7 +122,7 @@ await bob.Client.SendAnnotationAsync(new AnnotationMessage { Kind = AnnotationKi
 Check(await WaitUntil(() => alice.Annotations.Any(a => a.Kind == AnnotationKind.Clear && a.Name == "Bob")), "Bob 清空标注，Alice 收到");
 
 // 文件：上传到临时目录，再下载回来对比
-string tempDir = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "linkdesk-test-" + Guid.NewGuid().ToString("N"));
+string tempDir = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "linktomydesk-test-" + Guid.NewGuid().ToString("N"));
 System.IO.Directory.CreateDirectory(tempDir);
 string src = System.IO.Path.Combine(tempDir, "src.bin");
 var payload = new byte[300 * 1024 + 123]; // 多于 4 块，最后一块不满

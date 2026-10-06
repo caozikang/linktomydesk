@@ -18,10 +18,10 @@ using MouseButton = RemoteControl.Common.MouseButton;
 namespace RemoteControl.Client
 {
     /// <summary>
-    /// 控制端主窗口（简连 LinkDesk 风格），三个界面：
+    /// 控制端主窗口（简连 LinkToMyDesk 风格），三个界面：
     /// ① 主屏：输入对方识别码和密码  ② 连接中  ③ 远程会话（画面 + 悬浮工具栏 + 协作面板）
     /// </summary>
-    public partial class MainWindow : LinkDeskWindow
+    public partial class MainWindow : LinkToMyDeskWindow
     {
         private const string SettingsName = "client";
         private const double HomeWidth = 420;
@@ -40,7 +40,7 @@ namespace RemoteControl.Client
 
         public MainWindow()
         {
-            ChromeTitle = "简连 LinkDesk";
+            ChromeTitle = "简连 LinkToMyDesk";
             Width = HomeWidth;
             Height = HomeHeight;
 
@@ -568,7 +568,7 @@ namespace RemoteControl.Client
             _connectingView.Visibility = Visibility.Collapsed;
             _sessionView.Visibility = Visibility.Collapsed;
 
-            ChromeTitle = "简连 LinkDesk";
+            ChromeTitle = "简连 LinkToMyDesk";
             SetResizable(false);
             ResizeCentered(HomeWidth, HomeHeight);
             ClearCollaborationUI();
@@ -595,7 +595,7 @@ namespace RemoteControl.Client
             _connectingView.Visibility = Visibility.Collapsed;
             _sessionView.Visibility = Visibility.Visible;
 
-            ChromeTitle = $"简连 LinkDesk · {_target}";
+            ChromeTitle = $"简连 LinkToMyDesk · {_target}";
             SetResizable(true);
 
             // 会话窗口尽量大，但不超过工作区

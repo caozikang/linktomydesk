@@ -1,6 +1,6 @@
-# 简连 LinkDesk 开发进度
+# 简连 LinkToMyDesk 开发进度
 
-更新时间：2026-10-03
+更新时间：2026-10-06（原名 LinkDesk，2026-10-06 改名为 LinkToMyDesk，官网 www.linktomydesk.com）
 
 ## 目标
 
@@ -9,7 +9,7 @@
 已上线的基础能力：
 - H.264 推流（硬件编码优先），画面自适应缩放和 1:1 原始尺寸
 - 多人同时访问，互相能看到对方的操作和按键
-- LinkDesk 深色界面（参考 `linkdesk.html`）
+- 深色界面（参考最初的 HTML 界面原型）
 
 本轮目标（用户提出）：
 1. 工具栏加 Ctrl+Alt+Del 按钮，锁屏后也能输入账号密码解锁
@@ -23,7 +23,7 @@
 | 协议 | `Common/Enums.cs`、`Common/Messages.cs` | 新消息：SendSas、SasResult、MonitorList、SelectMonitor、Annotation、PendingApproval、FileUploadComplete、FileTransferError；新数据结构 MonitorInfo、AnnotationMessage、FileTransferErrorMessage |
 | 设置 | `Common/AppSettings.cs` | 接入确认、无人值守、固定密码、工具栏位置和收起状态、最近设备。被控端设置改存 ProgramData（SYSTEM 服务也能读），自动迁移旧配置，识别码不变 |
 | 客户端网络 | `Client/RemoteClientWithRelay.cs` | 文件上传、下载、取消和进度；断线时清理未完成的文件；Ctrl+Alt+Del、切换屏幕、标注收发；拒绝接入和等待确认的提示 |
-| 录制 | `Client/Mp4Recorder.cs` | H.264 直接封装为 MP4，不重新编码，保存到"视频\LinkDesk" |
+| 录制 | `Client/Mp4Recorder.cs` | H.264 直接封装为 MP4，不重新编码，保存到"视频\LinkToMyDesk" |
 | 工具栏 | `Client/SessionFeatures.cs` | 左侧手柄拖动，双击或拖回顶部中间时归位；右侧按钮收起；位置会记住，窗口缩小时自动拉回可见区域。新增传输文件、Ctrl+Alt+Del、白板标注、录制按钮和屏幕下拉框 |
 | 白板标注 | `Client/SessionFeatures.cs` | 用各人颜色画线，坐标归一化，不受缩放影响；右键清空，所有人同步 |
 | 文件传输 | `Client/FileTransferWindow.cs` | 双栏浏览（本机/远程），可多选上传下载，有进度和速度，可取消；同名文件不覆盖；拖文件进画面会上传到对方桌面 |
