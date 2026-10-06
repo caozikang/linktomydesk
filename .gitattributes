@@ -1,0 +1,6 @@
+# Windows 批处理必须是 CRLF，否则 cmd 会把行切错位
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Linux 脚本必须是 LF
+*.sh text eol=lf

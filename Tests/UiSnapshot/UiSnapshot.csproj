@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <UseWPF>true</UseWPF>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FFmpeg.AutoGen" Version="7.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\RemoteControl.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Shared\FFmpegSetup.cs" Link="Linked\FFmpegSetup.cs" />
+    <Compile Include="..\..\Shared\UiKit.cs" Link="Linked\UiKit.cs" />
+    <Page Include="..\..\Shared\Theme.xaml" Link="Theme.xaml" />
+    <Compile Include="..\..\Server\MainWindow.xaml.cs" Link="Linked\ServerMainWindow.cs" />
+    <Compile Include="..\..\Server\RemoteServerWithRelay.cs" Link="Linked\RemoteServerWithRelay.cs" />
+    <Compile Include="..\..\Server\ViewerSession.cs" Link="Linked\ViewerSession.cs" />
+    <Compile Include="..\..\Server\ScreenCapture.cs" Link="Linked\ScreenCapture.cs" />
+    <Compile Include="..\..\Server\H264Encoder.cs" Link="Linked\H264Encoder.cs" />
+    <Compile Include="..\..\Server\InputSimulator.cs" Link="Linked\InputSimulator.cs" />
+    <Compile Include="..\..\Server\FileTransferManager.cs" Link="Linked\FileTransferManager.cs" />
+    <Compile Include="..\..\Client\MainWindow.xaml.cs" Link="Linked\ClientMainWindow.cs" />
+    <Compile Include="..\..\Client\RemoteClientWithRelay.cs" Link="Linked\RemoteClientWithRelay.cs" />
+    <Compile Include="..\..\Client\H264Decoder.cs" Link="Linked\H264Decoder.cs" />
+    <Compile Include="..\..\Client\Mp4Recorder.cs" Link="Linked\Mp4Recorder.cs" />
+    <Compile Include="..\..\Client\SessionFeatures.cs" Link="Linked\SessionFeatures.cs" />
+    <Compile Include="..\..\Client\FileTransferWindow.cs" Link="Linked\FileTransferWindow.cs" />
+    <Compile Include="..\..\Server\AnnotationOverlay.cs" Link="Linked\AnnotationOverlay.cs" />
+    <Compile Include="..\..\Server\ApprovalDialog.cs" Link="Linked\ApprovalDialog.cs" />
+    <Compile Include="..\..\Server\FixedPasswordDialog.cs" Link="Linked\FixedPasswordDialog.cs" />
+    <Compile Include="..\..\Server\MainWindow.Unattended.cs" Link="Linked\MainWindow.Unattended.cs" />
+    <Compile Include="..\..\Server\Unattended\*.cs" LinkBase="Linked\Unattended" />
+  </ItemGroup>
+
+</Project>

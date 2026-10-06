@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>简连 LinkDesk 使用说明</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#171c24; --panel2:#1e2530; --line:#2a3240;
+    --txt:#e8edf4; --sub:#8b97a8; --acc:#2dd4bf; --warn:#f59e0b; --danger:#f87171; --ok:#34d399;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);
+       font:15px/1.75 "Segoe UI Variable Text","Segoe UI","Microsoft YaHei UI","Microsoft YaHei",sans-serif}
+  a{color:var(--acc)}
+  a:focus-visible,summary:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:4px}
+  .skip{position:absolute;left:-999px;top:8px;background:var(--acc);color:#04211d;padding:6px 12px;border-radius:8px}
+  .skip:focus{left:8px}
+  .wrap{display:grid;grid-template-columns:240px 1fr;max-width:1180px;margin:0 auto}
+  nav{position:sticky;top:0;height:100vh;overflow:auto;padding:28px 18px;border-right:1px solid var(--line)}
+  nav .brand{display:flex;align-items:center;gap:10px;font-weight:600;margin-bottom:22px}
+  .logo{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:13px;
+        color:#04211d;background:linear-gradient(135deg,#2dd4bf,#14b8a6)}
+  nav ol{list-style:none;margin:0;padding:0}
+  nav li a{display:block;padding:6px 10px;border-radius:8px;color:var(--sub);text-decoration:none;font-size:14px}
+  nav li a:hover{background:var(--panel2);color:var(--txt)}
+  main{padding:36px 44px 80px;min-width:0}
+  h1{font-size:28px;margin:0 0 6px}
+  h2{font-size:21px;margin:48px 0 14px;padding-top:8px;border-top:1px solid var(--line)}
+  h3{font-size:16px;margin:26px 0 8px;color:var(--acc)}
+  .lead{color:var(--sub);margin:0 0 24px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid3 .card{margin:0}
+  .card b{display:block;margin-bottom:4px}
+  .card small{color:var(--sub)}
+  ol.steps{counter-reset:s;list-style:none;padding:0}
+  ol.steps>li{counter-increment:s;position:relative;padding:0 0 12px 40px}
+  ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:26px;height:26px;border-radius:50%;
+       background:rgba(45,212,191,.16);color:var(--acc);display:grid;place-items:center;font-size:13px;font-weight:700}
+  code,kbd{font-family:"Cascadia Mono",Consolas,monospace;font-size:13px}
+  code{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+  kbd{background:var(--panel2);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px}
+  pre{background:#0a0d12;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow:auto}
+  pre code{background:none;border:0;padding:0}
+  table{width:100%;border-collapse:collapse;margin:10px 0}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--sub);font-weight:600;font-size:13px}
+  .note,.warn{border-radius:10px;padding:12px 16px;margin:14px 0;border-left:3px solid}
+  .note{background:rgba(45,212,191,.08);border-color:var(--acc)}
+  .warn{background:rgba(245,158,11,.08);border-color:var(--warn)}
+  .ico{display:inline-grid;place-items:center;min-width:28px;height:26px;padding:0 6px;border-radius:7px;
+       background:var(--panel2);border:1px solid var(--line);font-size:13px}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin:8px 0}
+  summary{cursor:pointer;font-weight:600}
+  details[open] summary{margin-bottom:6px}
+  footer{color:var(--sub);font-size:13px;margin-top:60px}
+  @media (max-width:860px){
+    .wrap{grid-template-columns:1fr}
+    nav{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+    main{padding:24px 18px 60px}
+    .grid3{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<div class="wrap">
+
+<nav aria-label="目录">
+  <div class="brand"><span class="logo" aria-hidden="true">L</span>简连 LinkDesk</div>
+  <ol>
+    <li><a href="#overview">工作原理</a></li>
+    <li><a href="#relay">1. 部署中继服务器</a></li>
+    <li><a href="#server">2. 被控端</a></li>
+    <li><a href="#client">3. 控制端</a></li>
+    <li><a href="#toolbar">4. 工具栏功能</a></li>
+    <li><a href="#files">5. 文件传输</a></li>
+    <li><a href="#multi">6. 多人协作</a></li>
+    <li><a href="#unattended">7. 无人值守 / 锁屏解锁</a></li>
+    <li><a href="#tips">画质与网络</a></li>
+    <li><a href="#faq">常见问题</a></li>
+    <li><a href="#security">安全说明</a></li>
+  </ol>
+</nav>
+
+<main id="main">
+<h1>简连 LinkDesk 使用说明</h1>
+<p class="lead">开源的 Windows 远程控制软件。两台电脑都在内网也能连，用 9 位识别码加密码接入。</p>
+
+<h2 id="overview">工作原理</h2>
+<div class="grid3">
+  <div class="card"><b>控制端</b><small>你面前的电脑，运行 <code>RemoteControl.Client.exe</code></small></div>
+  <div class="card"><b>中继服务器</b><small>一台有公网 IP 的服务器，只负责转发，不保存数据</small></div>
+  <div class="card"><b>被控端</b><small>要被远程操作的电脑，运行 <code>RemoteControl.Server.exe</code></small></div>
+</div>
+<p>两端都主动连接中继，所以不需要在路由器上做端口转发。中继要你自己部署一台，程序里没有内置公共中继。</p>
+<p>在同一个局域网里，也可以不用中继，选「IP 直连」（默认端口 5900）。</p>
+
+<h2 id="relay">1. 部署中继服务器</h2>
+<p>任意一台有公网 IP 的 Linux 或 Windows 服务器都可以，配置要求很低，1 核 1G 就够。</p>
+<ol class="steps">
+  <li>在服务器上安装 <a href="https://dotnet.microsoft.com/download/dotnet/6.0">.NET 6 运行时</a>。</li>
+  <li>把发布好的 <code>publish-linux/RelayServer</code> 目录上传到服务器，然后启动：
+<pre><code>cd RelayServer
+dotnet RemoteControl.RelayServer.dll 16888</code></pre>
+    最后的数字是端口，不写默认就是 16888。</li>
+  <li>在服务器防火墙<strong>和</strong>云厂商控制台的安全组里，放行 TCP 16888。</li>
+  <li>想开机自动运行，可以用仓库里的 <code>deploy-linux-service.sh</code> 注册成 systemd 服务。</li>
+</ol>
+<div class="note">中继地址可以填域名或 IP，比如 <code>relay.example.com</code>。被控端和控制端要填同一个中继地址和端口。</div>
+
+<h2 id="server">2. 被控端</h2>
+<ol class="steps">
+  <li>右键 <code>RemoteControl.Server.exe</code>，选「以管理员身份运行」。注入鼠标键盘需要管理员权限。</li>
+  <li>连接方式选「中继（推荐）」，填写中继服务器地址和端口。</li>
+  <li>点「开启远程协助」。底部显示「已连接中继节点」后，就可以接受连接了。</li>
+  <li>把卡片上的<strong>识别码</strong>和<strong>密码</strong>告诉对方，可以点 <span class="ico">⧉</span> 复制。点 <span class="ico">⟳</span> 会换一个新密码，已经连上的人不受影响。</li>
+</ol>
+<h3>接入选项</h3>
+<table>
+  <tr><th>选项</th><th>作用</th></tr>
+  <tr><td>对方确认后接入</td><td>有人连接时弹窗询问，点「允许」才能接入。30 秒内没点就自动拒绝。</td></tr>
+  <tr><td>无人值守模式</td><td>安装为系统服务，见 <a href="#unattended">第 7 节</a>。</td></tr>
+</table>
+<p>「访问者」标签页显示当前谁在线、谁正在操作，「运行日志」标签页显示连接记录。</p>
+
+<h2 id="client">3. 控制端</h2>
+<ol class="steps">
+  <li>运行 <code>RemoteControl.Client.exe</code>。第一次使用时，点右下角「设置」，填写中继服务器地址和端口。还可以填「我的名字」，多人访问时别人看到的就是这个名字。</li>
+  <li>输入对方的识别码（带不带空格都可以）和密码，按回车或点「连 接」。</li>
+  <li>如果对方开了「确认后接入」，会显示「等待对方点击允许」。</li>
+  <li>连接成功后进入远程画面，鼠标和键盘操作都会发给对方。</li>
+</ol>
+<p>主页下方的「最近连接」会记住最近 8 台设备，点一下就能填好识别码，密码要重新输入。</p>
+
+<h2 id="toolbar">4. 工具栏功能</h2>
+<p>画面上方有一条悬浮工具栏，鼠标移开后会变淡。</p>
+<table>
+  <tr><th>按钮</th><th>功能</th></tr>
+  <tr><td>⠿ 左侧手柄</td><td><strong>按住拖动</strong>可以把工具栏移到画面任意位置，位置会记住。<strong>双击</strong>手柄，或者拖回顶部中间附近，就回到默认位置。</td></tr>
+  <tr><td>‹ / › 右侧箭头</td><td><strong>收起 / 展开</strong>工具栏。收起后只剩一个小条，不挡画面。</td></tr>
+  <tr><td>全屏</td><td>进入或退出全屏。</td></tr>
+  <tr><td>原始尺寸</td><td>在「自适应窗口」和「1:1 原始像素」之间切换。原始尺寸下可以滚动查看。</td></tr>
+  <tr><td>在线成员</td><td>显示或隐藏右侧的成员和操作动态面板。</td></tr>
+  <tr><td>⇄ 传输文件</td><td>打开文件传输窗口，见 <a href="#files">第 5 节</a>。</td></tr>
+  <tr><td>⌨ Ctrl+Alt+Del</td><td>给对方发送 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>。<strong>需要对方开启无人值守模式</strong>，否则会提示无法发送。</td></tr>
+  <tr><td>✎ 白板标注</td><td>开启后，在画面上按住拖动就能画线，所有在线的人和被控端屏幕上都看得到。<strong>右键</strong>清空全部标注。标注时不会操作对方电脑，再点一次退出标注模式。</td></tr>
+  <tr><td>● 录制</td><td>开始或停止录制，保存为 MP4，放在「视频\LinkDesk」文件夹。录制时底部会显示「录制中」。</td></tr>
+  <tr><td>屏幕1 ▾</td><td>对方有多个显示器时才会出现，用来切换要看的屏幕。一个人切换后，所有人看到的画面都会跟着切换。</td></tr>
+  <tr><td>画质 / 帧率</td><td>流畅、标准、高清、超清；15、30、60 帧。见 <a href="#tips">画质与网络</a>。</td></tr>
+  <tr><td>延迟 · 速率</td><td>往返延迟和当前接收速率。圆点颜色：绿色低于 80ms，黄色低于 200ms，红色更高。</td></tr>
+  <tr><td>⏻ 断开</td><td>结束远程会话。</td></tr>
+</table>
+<div class="note">会话中，除了在工具栏上，所有按键都会发给远程，包括 <kbd>Tab</kbd>、<kbd>Alt</kbd>、<kbd>Win</kbd>。但 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 会被本机 Windows 拦截，发不出去，所以要用工具栏上的 ⌨ 按钮。</div>
+
+<h2 id="files">5. 文件传输</h2>
+<ul>
+  <li>点工具栏上的 ⇄，会打开一个双栏窗口：左边是本机，右边是远程。双击文件夹进入，<kbd>Backspace</kbd> 返回上一级，点路径栏旁边的 <span class="ico">⌂</span> 可以跳到桌面。</li>
+  <li>选中文件（按住 <kbd>Ctrl</kbd> 可以多选），点中间的 <strong>›</strong> 上传到右边当前目录，点 <strong>‹</strong> 下载到左边当前目录。</li>
+  <li>从资源管理器把文件拖到右栏可以直接上传。拖到远程画面上，会上传到对方桌面。</li>
+  <li>底部的传输列表显示进度和速度，点 ✕ 取消。取消或失败后，传了一半的文件会自动删除。</li>
+  <li>目标位置已有同名文件时不会覆盖，会自动改名为「文件名 (1)」。</li>
+</ul>
+
+<h2 id="multi">6. 多人协作</h2>
+<p>同一台被控端最多可以 10 个人同时连接，大家看到的是同一块屏幕，都可以操作。</p>
+<ul>
+  <li>右侧面板显示在线成员，每人一个颜色，正在操作的人后面标着「操作中」。</li>
+  <li>「操作动态」会实时显示谁按了什么键、点了哪里。别人的操作还会在画面左上角浮动提示。</li>
+  <li>有人正在按住鼠标拖动时，其他人的鼠标不会把指针抢走。</li>
+  <li>每个人的画质和帧率各自独立，一个人网速慢不会拖慢别人。</li>
+</ul>
+
+<h2 id="unattended">7. 无人值守 / 锁屏解锁</h2>
+<p>普通模式下，被控端只是一个桌面程序。电脑锁屏、注销，或者弹出 UAC 窗口后，就看不到画面，也没法输入。开启无人值守后，程序作为 Windows 服务（以 SYSTEM 身份）运行，开机自动启动，这些情况下都能远程操作，还能发送 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>。</p>
+<h3>开启方法</h3>
+<ol class="steps">
+  <li>以管理员身份运行被控端，<strong>不要加任何参数</strong>。</li>
+  <li>连接方式选「中继」，填好中继服务器地址和端口。无人值守只支持中继方式。</li>
+  <li>勾选「无人值守模式」，在弹窗里设置固定密码：8–32 位，同时有字母和数字，不能有空格。</li>
+  <li>程序会自动安装并启动服务。在服务列表（<code>services.msc</code>）里能看到「简连 LinkDesk 无人值守」，服务名是 <code>LinkDeskService</code>。</li>
+  <li>被控端界面会变成只显示状态，底部显示「已连接中继节点 …（无人值守）」。之后关掉这个窗口也不影响远程连接。</li>
+</ol>
+<div class="warn"><strong>注意：</strong>不要手动运行 <code>RemoteControl.Server.exe --service</code>。这个参数是给 Windows 服务管理器用的，手动运行只会弹一个提示，然后退出，不会安装服务，也不会接受连接。</div>
+<h3>远程解锁</h3>
+<ol class="steps">
+  <li>用识别码和<strong>固定密码</strong>连接。无人值守模式下，原来的 6 位临时密码不能用了。</li>
+  <li>看到锁屏画面后，点工具栏上的 ⌨ 发送 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>。</li>
+  <li>输入 Windows 账号密码，就和坐在电脑前一样操作。</li>
+</ol>
+<h3>关闭方法</h3>
+<p>打开被控端，取消勾选「无人值守模式」并确认。服务会被停止并删除，固定密码也会一起清除。</p>
+<p>运行日志在 <code>C:\ProgramData\RemoteControl\agent.log</code>，日志里不会记录密码。</p>
+
+<h2 id="tips">画质与网络</h2>
+<table>
+  <tr><th>档位</th><th>分辨率</th><th>码率（按 1080p）</th><th>适合</th></tr>
+  <tr><td>流畅</td><td>50%</td><td>约 1 Mbps</td><td>跨运营商、手机热点</td></tr>
+  <tr><td>标准（默认）</td><td>75%</td><td>约 2 Mbps</td><td>大多数公网环境</td></tr>
+  <tr><td>高清</td><td>100%</td><td>约 4 Mbps</td><td>带宽好的公网</td></tr>
+  <tr><td>超清</td><td>100%</td><td>约 8 Mbps</td><td>局域网</td></tr>
+</table>
+<p>卡顿时先降画质，再降帧率。延迟高通常是因为中继离两端都太远，或者跨了运营商，把中继部署在离双方都近的机房，效果最好。</p>
+
+<h2 id="faq">常见问题</h2>
+<details><summary>提示「设备不在线」或一直连不上</summary>
+<p>先看被控端底部有没有显示「已连接中继节点」。如果没有，检查中继地址、端口，以及服务器防火墙和安全组是否放行了 16888。另外确认两端填的是同一个中继。</p></details>
+<details><summary>能看到画面，但鼠标键盘没反应</summary>
+<p>被控端要以管理员身份运行。部分安全软件会拦截模拟输入，需要把程序加入白名单。</p></details>
+<details><summary>锁屏后画面卡住或变黑</summary>
+<p>普通模式下就是这样。要远程解锁，请开启 <a href="#unattended">无人值守模式</a>。</p></details>
+<details><summary>点 Ctrl+Alt+Del 提示「对方未开启无人值守模式」</summary>
+<p>只有系统服务才能发送这个组合键，需要先在被控端开启无人值守。</p></details>
+<details><summary>开了无人值守，但服务列表里没有服务</summary>
+<p>请确认是通过勾选「无人值守模式」开启的，而不是手动加 <code>--service</code> 参数运行。安装失败时，被控端会弹出原因，日志里也有记录。</p></details>
+<details><summary>多显示器时鼠标位置不对</summary>
+<p>先用工具栏上的「屏幕N ▾」切到要操作的那块屏幕，鼠标坐标是按当前这块屏幕计算的。</p></details>
+
+<h2 id="security">安全说明</h2>
+<ul>
+  <li><strong>目前通信没有加密。</strong>跨公网使用敏感数据时，建议给中继加 TLS，或者在 VPN 里使用。</li>
+  <li>密码只在被控端本地校验，中继不保存，也看不到密码。</li>
+  <li>无人值守模式下，只要知道识别码和固定密码，任何人都能在没人看管时远程操作这台电脑，包括解锁。请使用强密码，不要告诉不信任的人。</li>
+  <li>对不认识的人，开启「对方确认后接入」。</li>
+  <li>请只在你拥有或已获得授权的电脑上使用本软件。</li>
+</ul>
+
+<footer>简连 LinkDesk · MIT 许可证开源</footer>
+</main>
+</div>
+</body>
+</html>

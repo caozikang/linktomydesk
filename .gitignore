@@ -1,0 +1,25 @@
+bin/
+obj/
+publish/
+*.user
+*.suo
+.vs/
+*.log
+*.tmp
+*.bak
+packages/
+.vscode/
+
+# 发布产物（Linux 中继、打包文件）
+publish-linux/
+*.zip
+*.tar.gz
+
+# FFmpeg 运行库由 NuGet 包 Sdcb.FFmpeg.runtime.windows-x64 提供，不进仓库
+*.dll
+
+.idea/
+.claude/settings.local.json
+
+# UI 截图测试输出
+Tests/UiSnapshot/out/
